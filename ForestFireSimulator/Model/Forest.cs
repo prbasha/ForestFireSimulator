@@ -376,40 +376,42 @@ namespace ForestFireSimulator.Model
                                 int leftNeighbourIndex = cellIndex - 1;
                                 int topLeftNeighbourIndex = cellIndex - Constants.ForestWidth - 1;
 
-                                // Determine if the cell is on the left or right edge of the forest - certain neighbours must be ignored if a cell is one the left or right edge.
-                                bool leftEdge = (cellIndex % Constants.ForestWidth) == 0 ? true : false;
+                                // Determine if the cell is on the top/right/bottom/left edge of the forest - certain neighbours must be ignored if a cell is on an edge.
+                                bool topEdge = cellIndex < Constants.ForestWidth ? true : false;
                                 bool rightEdge = ((cellIndex + 1) % Constants.ForestWidth) == 0 ? true : false;
+                                bool leftEdge = (cellIndex % Constants.ForestWidth) == 0 ? true : false;
+                                bool bottomEdge = (cellIndex + Constants.ForestWidth) >= (Constants.ForestWidth * Constants.ForestHeight) ? true : false;
 
                                 // Check each neighbour.
-                                if (IsCellBurning(topNeighbourIndex))
+                                if (!topEdge && updatedForestCell.CellState != CellState.Burning && IsCellBurning(topNeighbourIndex))
                                 {
                                     updatedForestCell.CellState = CellState.Burning;
                                 }
-                                if (!rightEdge && IsCellBurning(topRightNeighbourIndex))
+                                if (!rightEdge && updatedForestCell.CellState != CellState.Burning && IsCellBurning(topRightNeighbourIndex))
                                 {
                                     updatedForestCell.CellState = CellState.Burning;
                                 }
-                                if (!rightEdge && IsCellBurning(rightNeighbourIndex))
+                                if (!rightEdge && updatedForestCell.CellState != CellState.Burning && IsCellBurning(rightNeighbourIndex))
                                 {
                                     updatedForestCell.CellState = CellState.Burning;
                                 }
-                                if (!rightEdge && IsCellBurning(bottomRightNeighbourIndex))
+                                if (!rightEdge && updatedForestCell.CellState != CellState.Burning && IsCellBurning(bottomRightNeighbourIndex))
                                 {
                                     updatedForestCell.CellState = CellState.Burning;
                                 }
-                                if (IsCellBurning(bottomNeighbourIndex))
+                                if (!bottomEdge && updatedForestCell.CellState != CellState.Burning && IsCellBurning(bottomNeighbourIndex))
                                 {
                                     updatedForestCell.CellState = CellState.Burning;
                                 }
-                                if (!leftEdge && IsCellBurning(bottomLeftNeighbourIndex))
+                                if (!leftEdge && updatedForestCell.CellState != CellState.Burning && IsCellBurning(bottomLeftNeighbourIndex))
                                 {
                                     updatedForestCell.CellState = CellState.Burning;
                                 }
-                                if (!leftEdge && IsCellBurning(leftNeighbourIndex))
+                                if (!leftEdge && updatedForestCell.CellState != CellState.Burning && IsCellBurning(leftNeighbourIndex))
                                 {
                                     updatedForestCell.CellState = CellState.Burning;
                                 }
-                                if (!leftEdge && IsCellBurning(topLeftNeighbourIndex))
+                                if (!leftEdge && updatedForestCell.CellState != CellState.Burning && IsCellBurning(topLeftNeighbourIndex))
                                 {
                                     updatedForestCell.CellState = CellState.Burning;
                                 }
