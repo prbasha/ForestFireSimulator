@@ -29,6 +29,7 @@ namespace ForestFireSimulator.ViewModel
             // Initialise commands.
             StartSimulationCommand = new DelegateCommand(OnStartSimulation, CanStartSimulation);
             StopSimulationCommand = new DelegateCommand(OnStopSimulation, CanStopSimulation);
+            StepSimulationCommand = new DelegateCommand(OnStepSimulation, CanStepSimulation);
             ResetSimulationCommand = new DelegateCommand(OnResetSimulation);
             StartFireCommand = new DelegateCommand(OnStartFire, CanStartFire);
         }
@@ -54,6 +55,10 @@ namespace ForestFireSimulator.ViewModel
         /// Gets or sets the stop simulation command.
         /// </summary>
         public DelegateCommand StopSimulationCommand { get; private set; }
+
+        /// Gets or sets the step simulation command.
+        /// </summary>
+        public DelegateCommand StepSimulationCommand { get; private set; }
 
         /// Gets or sets the reset simulation command.
         /// </summary>
@@ -126,6 +131,35 @@ namespace ForestFireSimulator.ViewModel
         }
 
         /// <summary>
+        /// The OnStepSimulation method is called to step the simulation.
+        /// </summary>
+        /// <param name="arg"></param>
+        public async void OnStepSimulation(object arg)
+        {
+            try
+            {
+                if (Forest != null)
+                {
+                    await Forest.StepSimulation();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ForestFireSimulatorViewModel.OnStepSimulation(object arg): " + ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// The CanStepSimulation method is callled to determine if the simulation can step.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
+        public bool CanStepSimulation(object arg)
+        {
+            return Forest != null && !Forest.IsSimulationRunning;
+        }
+
+        /// <summary>
         /// The OnResetSimulation method is called to reset the simulation.
         /// </summary>
         /// <param name="arg"></param>
@@ -172,7 +206,7 @@ namespace ForestFireSimulator.ViewModel
         /// </summary>
         public bool CanStartFire(object arg)
         {
-            return Forest != null && Forest.IsSimulationRunning;
+            return Forest != null;
         }
 
         /// <summary>
@@ -186,6 +220,7 @@ namespace ForestFireSimulator.ViewModel
             {
                 StartSimulationCommand.RaiseCanExecuteChanged();
                 StopSimulationCommand.RaiseCanExecuteChanged();
+                StepSimulationCommand.RaiseCanExecuteChanged();
                 ResetSimulationCommand.RaiseCanExecuteChanged();
                 StartFireCommand.RaiseCanExecuteChanged();
             }

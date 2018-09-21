@@ -255,6 +255,25 @@ namespace ForestFireSimulator.Model
         }
 
         /// <summary>
+        /// The StepSimulation method is called to step through one iteration of the forest simulation.
+        /// </summary>
+        public async Task StepSimulation()
+        {
+            try
+            {
+                // Clear the simulation running flag.
+                if (!IsSimulationRunning)
+                {
+                    await UpdateForest();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Forest.StepSimulation(): " + ex.ToString());
+            }
+        }
+
+        /// <summary>
         /// The ResetSimulation method is called to reset the forest simulation.
         /// </summary>
         public void ResetSimulation()
