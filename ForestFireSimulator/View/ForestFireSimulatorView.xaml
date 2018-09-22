@@ -14,6 +14,10 @@
         Height="475">
     <Window.Resources>
         <Style x:Key="forestCellStyle" TargetType="{x:Type Rectangle}">
+            <Style.Setters>
+                <Setter Property="Stroke" Value="White"></Setter>
+                <Setter Property="StrokeThickness" Value="0.10"></Setter>
+            </Style.Setters>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding CellState}" Value="Empty">
                     <Setter Property="Fill" Value="Black"></Setter>
@@ -77,7 +81,7 @@
                 <Button Grid.Column="3" Margin="1,1,1,1" Background="Orange" Content="RESET" Command="{Binding ResetSimulationCommand}"></Button>
             </Grid>
         </Grid>
-        <Label Grid.Row="1" Padding="0,0,0,0" Margin="1,1,1,1">Use left-mouse button to start a fire (when simulation is running)</Label>
+        <Label Grid.Row="1" Padding="0,0,0,0" Margin="1,1,1,1">Use left-mouse button to start a fire</Label>
         <ItemsControl Grid.Row="2" Margin="1,1,1,1" 
                       Name="forestGrid" 
                       ItemsSource="{Binding Forest.ForestCells, Mode=OneWay}">

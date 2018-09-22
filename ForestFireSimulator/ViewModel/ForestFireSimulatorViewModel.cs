@@ -23,21 +23,27 @@ namespace ForestFireSimulator.ViewModel
         /// </summary>
         public ForestFireSimulatorViewModel()
         {
-            Forest = new Forest();  // Initialise the model class.
-            Forest.PropertyChanged += OnForestPropertyChanged;
+            try
+            {
+                Forest = new Forest();  // Initialise the model class.
+                Forest.PropertyChanged += OnForestPropertyChanged;
 
-            // Initialise commands.
-            StartSimulationCommand = new DelegateCommand(OnStartSimulation, CanStartSimulation);
-            StopSimulationCommand = new DelegateCommand(OnStopSimulation, CanStopSimulation);
-            StepSimulationCommand = new DelegateCommand(OnStepSimulation, CanStepSimulation);
-            ResetSimulationCommand = new DelegateCommand(OnResetSimulation);
-            StartFireCommand = new DelegateCommand(OnStartFire, CanStartFire);
+                // Initialise commands.
+                StartSimulationCommand = new DelegateCommand(OnStartSimulation, CanStartSimulation);
+                StopSimulationCommand = new DelegateCommand(OnStopSimulation, CanStopSimulation);
+                StepSimulationCommand = new DelegateCommand(OnStepSimulation, CanStepSimulation);
+                ResetSimulationCommand = new DelegateCommand(OnResetSimulation);
+                StartFireCommand = new DelegateCommand(OnStartFire, CanStartFire);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ForestFireSimulatorViewModel(): " + ex.ToString());
+            }
         }
         
         #endregion
 
         #region Events
-
         #endregion
 
         #region Properties
@@ -52,18 +58,22 @@ namespace ForestFireSimulator.ViewModel
         /// </summary>
         public DelegateCommand StartSimulationCommand { get; private set; }
 
+        /// <summary>
         /// Gets or sets the stop simulation command.
         /// </summary>
         public DelegateCommand StopSimulationCommand { get; private set; }
 
+        /// <summary>
         /// Gets or sets the step simulation command.
         /// </summary>
         public DelegateCommand StepSimulationCommand { get; private set; }
 
+        /// <summary>
         /// Gets or sets the reset simulation command.
         /// </summary>
         public DelegateCommand ResetSimulationCommand { get; private set; }
 
+        /// <summary>
         /// Gets or sets the start fire command.
         /// </summary>
         public DelegateCommand StartFireCommand { get; private set; }

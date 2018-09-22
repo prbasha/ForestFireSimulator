@@ -10,7 +10,7 @@ namespace ForestFireSimulator.Model
 {
     /// <summary>
     /// The Forest class represents a simulation of a forest.
-    /// It is made up of a grid of forest cells.
+    /// It is made up of a square grid of forest cells.
     /// At any point in time, a forest cell will have one of three states: empty, tree, or burning.
     /// </summary>
     public class Forest : NotificationBase
@@ -35,8 +35,15 @@ namespace ForestFireSimulator.Model
         /// </summary>
         public Forest()
         {
-            BuildForest();          // Build the forest.
-            _random = new Random(); // Initialise the random number generator.
+            try
+            {
+                BuildForest();          // Build the forest.
+                _random = new Random(); // Initialise the random number generator.
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Forest(): " + ex.ToString());
+            }
         }
 
         #endregion
