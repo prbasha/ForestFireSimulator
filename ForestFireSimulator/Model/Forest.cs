@@ -187,13 +187,20 @@ namespace ForestFireSimulator.Model
         /// </summary>
         private void BuildForest()
         {
-            if (!IsSimulationRunning)
+            try
             {
-                _forestCells = new ObservableCollection<ForestCell>();
-                while (_forestCells.Count != Constants.ForestWidth * Constants.ForestHeight)
+                if (!IsSimulationRunning)
                 {
-                    _forestCells.Add(new ForestCell(CellState.Tree));
+                    _forestCells = new ObservableCollection<ForestCell>();
+                    while (_forestCells.Count != Constants.ForestWidth * Constants.ForestHeight)
+                    {
+                        _forestCells.Add(new ForestCell(CellState.Tree));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Forest.BuildForest(): " + ex.ToString());
             }
         }
 
@@ -203,12 +210,19 @@ namespace ForestFireSimulator.Model
         /// </summary>
         private void ResetForest()
         {
-            if (!IsSimulationRunning)
+            try
             {
-                foreach (ForestCell forestCell in _forestCells)
+                if (!IsSimulationRunning)
                 {
-                    forestCell.CellState = CellState.Tree;
+                    foreach (ForestCell forestCell in _forestCells)
+                    {
+                        forestCell.CellState = CellState.Tree;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Forest.ResetForest(): " + ex.ToString());
             }
         }
 
