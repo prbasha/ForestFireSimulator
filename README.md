@@ -10,7 +10,7 @@ During an update, the following rules are applied to each cell:
 * A burning cell becomes an empty cell
 * A tree cell becomes a burning cell if one of its 8 neighbours is burning
 * A tree cell becomes a burning cell as per the lightning probability
-* An empty becomes a tree cell as per the regrowth probability
+* An empty cell becomes a tree cell as per the regrowth probability
 
 The lightning and regrowth probabilities can be updated in real-time.
 
