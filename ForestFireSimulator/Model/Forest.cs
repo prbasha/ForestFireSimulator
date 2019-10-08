@@ -138,7 +138,7 @@ namespace ForestFireSimulator.Model
         }
 
         /// <summary>
-        /// Gets or sets the step interval is milli-seconds.
+        /// Gets or sets the step interval in milli-seconds.
         /// </summary>
         public int StepIntervalMilliSeconds
         {
