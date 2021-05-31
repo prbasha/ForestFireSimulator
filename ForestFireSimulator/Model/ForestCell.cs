@@ -73,7 +73,7 @@ namespace ForestFireSimulator.Model
             set
             {
                 _cellState = value;
-                RaisePropertyChanged("CellState");
+                RaisePropertyChanged();
             }
         }
 

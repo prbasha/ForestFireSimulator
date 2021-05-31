@@ -94,7 +94,7 @@ namespace ForestFireSimulator.Model
                 if (value != null)
                 {
                     _forestCells = new ObservableCollection<ForestCell>(value);
-                    RaisePropertyChanged("ForestCells");
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -113,7 +113,7 @@ namespace ForestFireSimulator.Model
                 if (value >= Constants.ZeroPercentProbability && value <= Constants.OneHundredPercentProbability)
                 {
                     _regrowthProbability = value;
-                    RaisePropertyChanged("RegrowthProbability");
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -132,7 +132,7 @@ namespace ForestFireSimulator.Model
                 if (value >= Constants.ZeroPercentProbability && value <= Constants.OneHundredPercentProbability)
                 {
                     _lightingProbability = value;
-                    RaisePropertyChanged("LightningProbability");
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -151,7 +151,7 @@ namespace ForestFireSimulator.Model
                 if (value >= Constants.MinimumStepIntervalMilliSeconds && value <= Constants.MaximumStepIntervalMilliSeconds)
                 {
                     _stepIntervalMilliSeconds = value;
-                    RaisePropertyChanged("StepIntervalMilliSeconds");
+                    RaisePropertyChanged();
 
                     if (_stepTimer != null && _stepTimer.IsEnabled)
                     {
@@ -174,7 +174,7 @@ namespace ForestFireSimulator.Model
             private set
             {
                 _isSimulationRunning = value;
-                RaisePropertyChanged("IsSimulationRunning");
+                RaisePropertyChanged();
             }
         }
         
